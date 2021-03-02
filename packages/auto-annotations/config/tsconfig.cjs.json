@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "outDir": "../build/cjs",
+        "target": "ES5",
+        "lib": [
+            "ESNext"
+        ],
+        "moduleResolution": "node",
+        "declaration": true,
+        "downlevelIteration": true,
+        "module": "CommonJS",
+        "allowJs": false,
+        "strict": true,
+        "isolatedModules": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true
+    },
+    "include": [
+        "../src/**/*"
+    ]
+}

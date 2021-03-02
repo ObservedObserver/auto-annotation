@@ -1,7 +1,7 @@
 import { View } from '@antv/g2';
-import { IRow } from '../../interfaces';
+import { IRow } from '../interfaces';
 import { Clusters } from '@kanaries/ml';
-import { dropNull, json2matrix } from '../../utils';
+import { dropNull, json2matrix } from '../utils';
 export function annotateCluster(
     view: View,
     rawData: IRow[],

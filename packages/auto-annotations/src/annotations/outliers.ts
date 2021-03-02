@@ -1,7 +1,7 @@
 import { View } from "@antv/g2";
-import { IRow } from "../../interfaces";
+import { IRow } from "../interfaces";
 import { Ensemble } from '@kanaries/ml'
-import { dropNull, json2matrix } from "../../utils";
+import { dropNull, json2matrix } from ".././utils";
 export function annotateOutlier (view: View, rawData: IRow[], position: [string, string]) {
     const iForest = new Ensemble.IsolationForest(256, 10, 0.02);
     const cleanData = dropNull(rawData, position);

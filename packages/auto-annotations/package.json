@@ -1,0 +1,25 @@
+{
+  "name": "auto-annotations",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./build/cjs/index.js",
+  "types": "./build/esm/index.d.ts",
+  "module": "./build/esm/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p ./config/tsconfig.cjs.json && tsc -p ./config/tsconfig.esm.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@antv/g2": "^4.1.12",
+    "@kanaries/ml": "^0.0.7",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.2",
+    "typescript": "^4.2.2"
+  }
+}

@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import { regression } from '../core/annotations/regression';
 import { IRow } from '../interfaces';
-import { annotateOutlier } from '../core/annotations/outliers';
-import { annotateCluster } from '../core/annotations/cluster';
+import { annotations } from 'auto-annotations';
 
 interface LineChartProps {
     dataSource: IRow[];
@@ -34,7 +32,10 @@ const ScatterClusterChart: React.FC<LineChartProps> = (props) => {
             chartRef.current.clear();
             chartRef.current.point().shape('circle').position([xField, yField]);
             chartRef.current.data(dataSource);
-            annotateCluster(chartRef.current, dataSource, [xField, yField]);
+            annotations.annotateCluster(chartRef.current, dataSource, [
+                xField,
+                yField,
+            ]);
             chartRef.current.render();
         }
     }, [dataSource, xField, yField]);

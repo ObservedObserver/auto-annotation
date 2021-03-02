@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { mockTrendData } from '../utils';
 import { Chart } from '@antv/g2';
-import { regression } from '../core/annotations/regression';
+import { annotations } from 'auto-annotations';
 import { IRow } from '../interfaces';
-import { annotateOutlier } from '../core/annotations/outliers';
 
 interface LineChartProps {
     dataSource: IRow[];
@@ -52,7 +51,10 @@ const ScatterOutlierChart: React.FC<LineChartProps> = (props) => {
             chartRef.current.clear();
             chartRef.current.point().shape('circle').position([xField, yField]);
             chartRef.current.data(dataSource);
-            annotateOutlier(chartRef.current, dataSource, [xField, yField]);
+            annotations.annotateOutlier(chartRef.current, dataSource, [
+                xField,
+                yField,
+            ]);
             chartRef.current.render();
         }
     }, [dataSource, xField, yField]);

@@ -1,57 +1,18 @@
 import { View } from '@antv/g2';
-import { IRow } from '../../interfaces';
+import { IRow } from '../interfaces';
 import {
     dropNull,
     isNumField,
     json2matrix,
-    maxIndex,
-    mean,
-    minIndex,
-    normalize2quantitative,
-    reduceSum,
-    rescale,
-} from '../../utils';
-import { generalLinearRegression, multi } from '../lib/regression';
+    normalize2quantitative
+} from '../utils';
+import { generalLinearRegression } from '../lib/regression';
 function vec_dot(vec1: number[], vec2: number[]): number {
     let sum = 0;
     for (let i = 0; i < vec1.length; i++) {
         sum += vec1[i] * vec2[i];
     }
     return sum;
-}
-export function purelinearRegression(
-    normalizedData: IRow[],
-    xField: string,
-    yField: string
-) {
-    const xMean = mean(normalizedData, xField);
-    const yMean = mean(normalizedData, yField);
-
-    const numerator = reduceSum(
-        normalizedData.map((r) => (r[xField] - xMean) * (r[yField] - yMean))
-    );
-    const denominator = reduceSum(
-        normalizedData.map((r) => (r[xField] - xMean) ** 2)
-    );
-
-    const beta = numerator / denominator;
-
-    const alpha = yMean - xMean * beta;
-
-    const y_hat = (x: number) => alpha + beta * x;
-
-    const SSR = reduceSum(
-        normalizedData.map((r) => (y_hat(r[xField]) - yMean) ** 2)
-    );
-    const SST = reduceSum(normalizedData.map((r) => (r[yField] - yMean) ** 2));
-
-    const R2 = SSR / SST;
-
-    return {
-        alpha,
-        beta,
-        R2,
-    };
 }
 
 // TODO: data, spec冗余，可以从view里获得

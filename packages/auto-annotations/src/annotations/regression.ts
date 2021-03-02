@@ -1,7 +1,7 @@
 import { View } from '@antv/g2'
 import { Algebra } from '@kanaries/ml';
-import { IRow } from '../../interfaces';
-import { dropNull, isNumField, json2matrix, maxIndex, mean, minIndex, normalize2quantitative, reduceSum, rescale } from '../../utils';
+import { IRow } from '../interfaces';
+import { dropNull, isNumField, json2matrix, maxIndex, mean, minIndex, normalize2quantitative, reduceSum, rescale } from '../utils';
 import { generalLinearRegression } from '../lib/regression';
 
 export function purelinearRegression(

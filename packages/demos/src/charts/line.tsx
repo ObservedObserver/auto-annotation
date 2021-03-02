@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { mockTrendData } from '../utils';
 import { Chart } from '@antv/g2';
-import { regression } from '../core/annotations/regression';
+import { annotations } from 'auto-annotations';
 const mockData = mockTrendData('x', 'y', 20);
 const LineChart: React.FC = props => {
     const container = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ const LineChart: React.FC = props => {
             chart.theme('tableau')
             chart.line().position('x*y');
             chart.data(mockData);
-            regression(chart, mockData, ['x', 'y']);
+            annotations.annotateGeneralRegression(chart, mockData, ['x', 'y'], 1);
             chart.render()
             chartRef.current = chart;
         }

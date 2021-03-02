@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-// import { regression } from '../core/annotations/regression';
-import { annotateGeneralRegression } from '../core/annotations/expandRegression';
+import { annotations } from 'auto-annotations';
 import { IRow } from '../interfaces';
 
 function mockOrderData(xField: string, yField: string, size: number) {
@@ -39,7 +38,12 @@ const LineRegressionChart: React.FC = props => {
             chart.theme('tableau')
             chart.line().position('x*y');
             chart.data(mockData);
-            annotateGeneralRegression(chart, mockData, ['x', 'y'], 4);
+            annotations.annotateGeneralRegression(
+                chart,
+                mockData,
+                ['x', 'y'],
+                4
+            );
             chart.render()
             chartRef.current = chart;
         }
