@@ -20,7 +20,7 @@ export function annotateGeneralRegression(
     view: View,
     rawData: IRow[],
     position: [string, string],
-    order: number
+    order: number = 1
 ) {
     const cleanData = dropNull(rawData, position);
     let normalizedData: IRow[];

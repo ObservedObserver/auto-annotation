@@ -6,8 +6,36 @@
 npm i --save auto-annotations
 ```
 
+## 自动化感知推荐标记 AutoAnnotation
+
+`AutoAnnotation` 会识别视图中的洞察信息，并根据洞察的显著性推荐最合适的洞察，并返回一个标注函数。后续调用这个标注函数，即可完成在图表上的标注。
+
++ 构建参数: `view`，为一个G2.View
++ 方法
+    + `data(dataSource: IRow[])` 导入数据
+    + `position(pos: [string, string])` 定义位置通道
+    + `recommand()` 返回一个annotation函数，这个函数获得参数后可以用来绘制。
+
+```typescript
+import { annotations, AutoAnnotation } from 'auto-annotations';
+
+chart.point().position([xField, yField]);
+chart.data(dataSource);
+
+const ann = new AutoAnnotation(chart);
+
+ann.data(dataSource)
+    .position([xField, yField]);
+
+const annotate = ann.recommand()
+annotate(chart, dataSource, [xField, yField]);
+
+chart.render();
+```
 
 ## 自定义标记
+除了自动推荐标注外，你也可以直接使用你想要的标注。这些标注函数可以识别特定的洞察类型，并进行标注。标注函数本身并不是纯粹的绘制函数，其必须先识别到视图中的某个具体的洞察，根据洞察的一些数理信息，进行标注。
+
 ### 回归 annotateGeneralRegression
 ```typescript
 import {annotations} from 'auto-annotations';

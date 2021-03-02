@@ -8,6 +8,7 @@ import ScatterTrendChart from './charts/scatterTrend';
 import ScatterOutlierChart from './charts/scatterOutlier';
 import ScatterClusterChart from './charts/scatterCluster';
 import LineRegressionChart from './charts/lineRegression';
+import RecommandChart from './charts/recommand';
 
 function App() {
   const [dataSource, setDataSource] = useState<IRow[] | null>([]);
@@ -26,11 +27,18 @@ function App() {
       <div className="App">
           <Line />
           <LineRegressionChart />
-          {dataSource && dataSource.length > 0 && (
+          {/* {dataSource && dataSource.length > 0 && (
               <ScatterTrendChart
                   dataSource={dataSource}
                   xField="Displacement"
                   yField="Horsepower"
+              />
+          )} */}
+          {dataSource && dataSource.length > 0 && (
+              <RecommandChart
+                  dataSource={dataSource}
+                  xField="Displacement"
+                  yField="Acceleration"
               />
           )}
           {dataSource && dataSource.length > 0 && (

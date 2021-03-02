@@ -39,6 +39,18 @@ export function mean(dataSource: IRow[], field: string): number {
     return sum / values.length;
 }
 
+export function variance(values: number[]): number {
+    const _sum = reduceSum(values);
+    const _mean = _sum / values.length;
+    let ans = 0;
+    values.forEach(v => {
+        ans += (v - _mean) ** 2
+    })
+    // 这里研究的就是子簇本身，不是整体，所以不使用样本的无偏估计。
+    ans /= values.length;
+    return ans;
+}
+
 export function rescale(dataSource: IRow[], fields: string[]) {
     const ranges: Array<[number, number]> = fields.map((f) => {
         const values = dataSource.map((r) => r[f]);
