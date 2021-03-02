@@ -1,4 +1,4 @@
-# auto-annotations文档
+# auto-annotations
 
 ![](https://img.shields.io/npm/v/auto-annotations#align=left&display=inline&height=20&margin=%5Bobject%20Object%5D&name=&originHeight=20&originWidth=80&status=done&style=none&width=80)<br />auto-annotations是一个帮助你在可视化图表中自动标注出有价值的信息的工具。<br />
 
