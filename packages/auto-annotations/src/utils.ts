@@ -130,3 +130,11 @@ export function dropNull(dataSource: IRow[], fieldKeys: string[]): IRow[] {
         return fieldKeys.every(f => row[f] !== null && row[f] !== undefined)
     })
 }
+
+export function vec_dot(vec1: number[], vec2: number[]): number {
+    let sum = 0;
+    for (let i = 0; i < vec1.length; i++) {
+        sum += vec1[i] * vec2[i];
+    }
+    return sum;
+}

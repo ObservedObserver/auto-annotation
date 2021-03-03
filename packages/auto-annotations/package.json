@@ -1,6 +1,6 @@
 {
   "name": "auto-annotations",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "./build/cjs/index.js",
   "types": "./build/esm/index.d.ts",

@@ -4,16 +4,10 @@ import {
     dropNull,
     isNumField,
     json2matrix,
-    normalize2quantitative
+    normalize2quantitative,
+    vec_dot
 } from '../utils';
 import { generalLinearRegression } from '../lib/regression';
-function vec_dot(vec1: number[], vec2: number[]): number {
-    let sum = 0;
-    for (let i = 0; i < vec1.length; i++) {
-        sum += vec1[i] * vec2[i];
-    }
-    return sum;
-}
 
 // TODO: data, spec冗余，可以从view里获得
 export function annotateGeneralRegression(
