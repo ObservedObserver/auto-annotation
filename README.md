@@ -14,26 +14,32 @@ npm i --save auto-annotations
 + 方法
     + `recommand()` 返回一个annotation函数，这个函数获得参数后可以用来绘制。
 
+
+以cars数据集为例，这里原视图是一张["Displacement", "Acceleration"]两个数值字段构成的散点图。
+
 ```typescript
 import { annotations, AutoAnnotation } from 'auto-annotations';
 
-chart.point().position([xField, yField]);
+// 声明一个G2图表
+chart.point().position(["Displacement", "Acceleration"]);
 chart.data(dataSource);
 
+// 创建一个AutoAnnotation类
 const ann = new AutoAnnotation(chart);
 
+// 推荐一种标注，并获得标注绘制函数。
 const annotate = ann.recommand()
-annotate(chart, dataSource, [xField, yField]);
+annotate(chart);
 
 chart.render();
 ```
 
-最终的推荐结果如下
+最终的推荐结果如下, `auto-annotations` 识别到图中存在一些异常值，并将它们标注了出来。
 
 ![](https://cdn.nlark.com/yuque/0/2021/png/171008/1614741461882-35a6af2e-9437-4755-9ea3-10714e6ae282.png)
 
 ## 自定义标记
-除了自动推荐标注外，你也可以直接使用你想要的标注。这些标注函数可以识别特定的洞察类型，并进行标注。标注函数本身并不是纯粹的绘制函数，其必须先识别到视图中的某个具体的洞察，根据洞察的一些数理信息，进行标注。
+除了自动推荐标注外，当你有明确的分析目的时，你也可以直接使用你想要的标注。这些标注函数可以识别特定的洞察类型，并进行标注。标注函数本身并不是纯粹的绘制函数，其必须先识别到视图中的某个具体的洞察，根据洞察的一些数理信息，进行标注。
 
 ### 回归 annotateGeneralRegression
 ```typescript
