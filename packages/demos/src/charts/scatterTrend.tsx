@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { mockTrendData } from '../utils';
 import { Chart } from '@antv/g2';
 import { annotations } from 'auto-annotations';
 import { IRow } from '../interfaces';
@@ -52,10 +51,7 @@ const ScatterTrendChart: React.FC<LineChartProps> = (props) => {
             chartRef.current.clear();
             chartRef.current.point().shape('circle').position([xField, yField]);
             chartRef.current.data(dataSource)
-            annotations.annotateGeneralRegression(chartRef.current, dataSource, [
-                xField,
-                yField,
-            ], 1);
+            annotations.annotateGeneralRegression(chartRef.current);
             chartRef.current.render()
         }
     }, [dataSource, xField, yField])

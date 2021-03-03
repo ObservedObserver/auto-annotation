@@ -32,11 +32,18 @@ const RecommandChart: React.FC<LineChartProps> = (props) => {
             chartRef.current.clear();
             chartRef.current.point().shape('circle').position([xField, yField]);
             chartRef.current.data(dataSource);
+            const view = chartRef.current;
+            console.log(
+                'view optios',
+                view.getOptions().data,
+                view.getOptions(),
+                view.geometries.forEach(geom => {
+                    console.log(geom.getXYFields())
+                })
+            );
             const ann = new AutoAnnotation(chartRef.current);
-            ann.data(dataSource)
-                .position([xField, yField]);
             const annotate = ann.recommand()
-            annotate(chartRef.current, dataSource, [xField, yField]);
+            annotate(chartRef.current);
             chartRef.current.render();
         }
     }, [dataSource, xField, yField]);

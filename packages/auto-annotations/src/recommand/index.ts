@@ -1,36 +1,33 @@
 import { View } from "@antv/g2";
 import { Clusters, Ensemble } from "@kanaries/ml";
 import { IRow } from "../interfaces";
-import { dropNull, json2matrix, maxIndex, reduceSum, variance, vec_dot } from "../utils";
+import { dropNull, getViewPosition, getViewRawData, json2matrix, maxIndex, reduceSum, variance, vec_dot } from "../utils";
 import { annotateCluster, annotateGeneralRegression, annotateOutlier } from '../annotations/index'
 import { generalLinearRegression } from "../lib/regression";
-const annotationList = [annotateCluster, annotateOutlier, annotateGeneralRegression] as const;
+// const annotationList = [annotateCluster, annotateOutlier, annotateGeneralRegression] as const;
 const MAX_TEST_ORDER = 3;
 export class AutoAnnotation {
     private view: View;
-    private rawData: IRow[] = [];
-    private _position: [string, string] = ['x', 'y'];
     private polynomialBestOrder: number = 2;
     constructor (view: View) {
         this.view = view;
+        console.log(view.getData(), view.getOptions())
     }
 
-    public data(dataSource: IRow[]) {
-        this.rawData = dataSource;
-        return this;
+    private get rawData () {
+        return getViewRawData(this.view);
     }
 
-    public position (pos: [string, string]) {
-        this._position = pos;
-        return this;
+    private get position (): [string, string] {
+        return getViewPosition(this.view);
     }
 
     private get cleanData () {
-        return dropNull(this.rawData, this._position);
+        return dropNull(this.rawData, this.position);
     }
 
     private get sampleX () {
-        return json2matrix(this.cleanData, this._position);
+        return json2matrix(this.cleanData, this.position);
     }
 
     private outlierScore () {
@@ -115,7 +112,15 @@ export class AutoAnnotation {
         const cluster_score = this.clusterScore();
         const outlier_score = this.outlierScore();
         const trend_score = this.regressionScore();
+
         const scores = [cluster_score, outlier_score, trend_score];
+
+        const annotationList = [
+            annotateCluster,
+            annotateOutlier,
+            (view: View) => annotateGeneralRegression(view, this.polynomialBestOrder),
+        ] as const;
+    
         const _maxIndex = maxIndex(scores);
         return annotationList[_maxIndex];
     }

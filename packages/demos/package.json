@@ -15,7 +15,7 @@
     "moment": "^2.29.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "auto-annotations": "^0.0.1"
+    "auto-annotations": "^0.1.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

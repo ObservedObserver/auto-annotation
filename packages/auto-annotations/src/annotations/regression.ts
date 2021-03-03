@@ -1,7 +1,7 @@
 import { View } from '@antv/g2'
 import { Algebra } from '@kanaries/ml';
 import { IRow } from '../interfaces';
-import { dropNull, isNumField, json2matrix, maxIndex, mean, minIndex, normalize2quantitative, reduceSum, rescale } from '../utils';
+import { dropNull, getViewPosition, getViewRawData, isNumField, json2matrix, maxIndex, mean, minIndex, normalize2quantitative, reduceSum, rescale } from '../utils';
 import { generalLinearRegression } from '../lib/regression';
 
 export function purelinearRegression(
@@ -40,7 +40,9 @@ export function purelinearRegression(
 }
 
 // TODO: data, spec冗余，可以从view里获得
-export function regression(view: View, rawData: IRow[], position: [string, string]) {
+export function regression(view: View) {
+    const rawData = getViewRawData(view);
+    const position = getViewPosition(view);
     const cleanData = dropNull(rawData, position);
     let normalizedData: IRow[];
     if (!isNumField(cleanData, position[0])) {

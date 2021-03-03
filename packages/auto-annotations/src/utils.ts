@@ -1,3 +1,4 @@
+import { View } from "@antv/g2";
 import moment from "moment";
 import { IRow } from "./interfaces";
 
@@ -137,4 +138,12 @@ export function vec_dot(vec1: number[], vec2: number[]): number {
         sum += vec1[i] * vec2[i];
     }
     return sum;
+}
+
+export function getViewRawData (view: View) {
+    return view.getOptions().data || [];
+}
+
+export function getViewPosition (view : View) {
+    return view.geometries[0].getXYFields() as [string, string];
 }

@@ -32,10 +32,7 @@ const ScatterClusterChart: React.FC<LineChartProps> = (props) => {
             chartRef.current.clear();
             chartRef.current.point().shape('circle').position([xField, yField]);
             chartRef.current.data(dataSource);
-            annotations.annotateCluster(chartRef.current, dataSource, [
-                xField,
-                yField,
-            ]);
+            annotations.annotateCluster(chartRef.current);
             chartRef.current.render();
         }
     }, [dataSource, xField, yField]);

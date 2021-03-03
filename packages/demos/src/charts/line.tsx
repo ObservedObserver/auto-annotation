@@ -18,7 +18,7 @@ const LineChart: React.FC = props => {
             chart.theme('tableau')
             chart.line().position('x*y');
             chart.data(mockData);
-            annotations.annotateGeneralRegression(chart, mockData, ['x', 'y'], 1);
+            annotations.annotateGeneralRegression(chart, 1);
             chart.render()
             chartRef.current = chart;
         }

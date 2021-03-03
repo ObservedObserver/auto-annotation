@@ -12,8 +12,6 @@ npm i --save auto-annotations
 
 + 构建参数: `view`，为一个G2.View
 + 方法
-    + `data(dataSource: IRow[])` 导入数据
-    + `position(pos: [string, string])` 定义位置通道
     + `recommand()` 返回一个annotation函数，这个函数获得参数后可以用来绘制。
 
 ```typescript
@@ -23,9 +21,6 @@ chart.point().position([xField, yField]);
 chart.data(dataSource);
 
 const ann = new AutoAnnotation(chart);
-
-ann.data(dataSource)
-    .position([xField, yField]);
 
 const annotate = ann.recommand()
 annotate(chart, dataSource, [xField, yField]);
@@ -38,13 +33,9 @@ chart.render();
 
 ### 回归 annotateGeneralRegression
 ```typescript
-import {annotations} from 'auto-annotations';
-
 annotations.annotateGeneralRegression(
     view: View,
-    rawData: IRow[],
-    position: [string, string],
-    order: number
+    order?: number
 ) 
 ```
 #### 线性回归
@@ -54,7 +45,7 @@ import {annotations} from 'auto-annotations';
 chart.line().position([xField, yField]);
 chart.data(mockData);
 
-annotations.annotateGeneralRegression(chart, mockData, [xField, yField], 1);
+annotations.annotateGeneralRegression(chart);
 
 chart.render()
 ```
@@ -67,7 +58,7 @@ import {annotations} from 'auto-annotations';
 chart.line().position([xField, yField]);
 chart.data(mockData);
 
-annotations.annotateGeneralRegression(chart, mockData, [xField, yField], 4);
+annotations.annotateGeneralRegression(chart, 4);
 
 chart.render()
 ```
@@ -80,7 +71,7 @@ import {annotations} from 'auto-annotations';
 chart.line().position([xField, yField]);
 chart.data(data);
 
-annotations.annotateGeneralRegression(chart, data, [xField, yField], 1);
+annotations.annotateGeneralRegression(chart);
 
 chart.render()
 ```
@@ -94,7 +85,7 @@ import {annotations} from 'auto-annotations';
 chart.point().shape('circle').position([xField, yField]);
 chart.data(dataSource);
 
-annotations.annotateOutlier(chartRef.current, dataSource, [xField, yField]);
+annotations.annotateOutlier(chart);
 
 chart.render();
 ```
@@ -107,7 +98,7 @@ import {annotations} from 'auto-annotations';
 chart.point().position([xField, yField]);
 chart.data(dataSource);
 
-annotations.annotateCluster(chartRef.current, dataSource, [xField, yField]);
+annotations.annotateCluster(chart);
 
 chart.render();
 ```

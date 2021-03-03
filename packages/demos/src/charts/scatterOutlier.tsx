@@ -51,10 +51,7 @@ const ScatterOutlierChart: React.FC<LineChartProps> = (props) => {
             chartRef.current.clear();
             chartRef.current.point().shape('circle').position([xField, yField]);
             chartRef.current.data(dataSource);
-            annotations.annotateOutlier(chartRef.current, dataSource, [
-                xField,
-                yField,
-            ]);
+            annotations.annotateOutlier(chartRef.current);
             chartRef.current.render();
         }
     }, [dataSource, xField, yField]);

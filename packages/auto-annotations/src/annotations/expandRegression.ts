@@ -2,6 +2,8 @@ import { View } from '@antv/g2';
 import { IRow } from '../interfaces';
 import {
     dropNull,
+    getViewPosition,
+    getViewRawData,
     isNumField,
     json2matrix,
     normalize2quantitative,
@@ -12,10 +14,10 @@ import { generalLinearRegression } from '../lib/regression';
 // TODO: data, spec冗余，可以从view里获得
 export function annotateGeneralRegression(
     view: View,
-    rawData: IRow[],
-    position: [string, string],
     order: number = 1
 ) {
+    const rawData = getViewRawData(view);
+    const position = getViewPosition(view);
     const cleanData = dropNull(rawData, position);
     let normalizedData: IRow[];
     if (!isNumField(cleanData, position[0])) {
