@@ -1,7 +1,7 @@
 import { View } from "@antv/g2";
-import { IRow } from "../interfaces";
+import { IRow } from "../../interfaces";
 import { Ensemble } from '@kanaries/ml'
-import { dropNull, getViewPosition, getViewRawData, json2matrix } from ".././utils";
+import { dropNull, getViewPosition, getViewRawData, json2matrix } from "../.././utils";
 export function annotateOutlier (view: View) {
     const rawData = getViewRawData(view);
     const position = getViewPosition(view);

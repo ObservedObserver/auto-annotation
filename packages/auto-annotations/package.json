@@ -18,7 +18,10 @@
   "dependencies": {
     "@antv/g2": "^4.1.12",
     "@kanaries/ml": "^0.0.7",
-    "moment": "^2.29.1"
+    "immer": "^8.0.1",
+    "moment": "^2.29.1",
+    "vega": "^5.19.1",
+    "vega-lite": "^5.0.0"
   },
   "devDependencies": {
     "jest": "^26.6.3",

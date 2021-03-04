@@ -4,11 +4,11 @@ import Line from './charts/line';
 import './App.css'
 import { IRow, IField } from './interfaces';
 import { getCarsData } from './service/cars';
-import ScatterTrendChart from './charts/scatterTrend';
 import ScatterOutlierChart from './charts/scatterOutlier';
 import ScatterClusterChart from './charts/scatterCluster';
 import LineRegressionChart from './charts/lineRegression';
 import RecommandChart from './charts/recommand';
+import VLOutlier from './charts/vega/outlier';
 
 function App() {
   const [dataSource, setDataSource] = useState<IRow[] | null>([]);
@@ -25,8 +25,8 @@ function App() {
 
   return (
       <div className="App">
-          <Line />
-          <LineRegressionChart />
+          {/* <Line />
+          <LineRegressionChart /> */}
           {/* {dataSource && dataSource.length > 0 && (
               <ScatterTrendChart
                   dataSource={dataSource}
@@ -34,7 +34,7 @@ function App() {
                   yField="Horsepower"
               />
           )} */}
-          {dataSource && dataSource.length > 0 && (
+          {/* {dataSource && dataSource.length > 0 && (
               <RecommandChart
                   dataSource={dataSource}
                   xField="Displacement"
@@ -54,7 +54,14 @@ function App() {
                   xField="Displacement"
                   yField="Horsepower"
               />
-          )}
+          )} */}
+          {
+              dataSource && dataSource.length > 0 && <VLOutlier
+                dataSource={dataSource}
+                  xField="Displacement"
+                  yField="Horsepower"
+              />
+          }
       </div>
   );
 }

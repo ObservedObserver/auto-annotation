@@ -2,7 +2,7 @@ import { View } from "@antv/g2";
 import { Clusters, Ensemble } from "@kanaries/ml";
 import { IRow } from "../interfaces";
 import { dropNull, getViewPosition, getViewRawData, json2matrix, maxIndex, reduceSum, variance, vec_dot } from "../utils";
-import { annotateCluster, annotateGeneralRegression, annotateOutlier } from '../annotations/index'
+import { annotateCluster, annotateGeneralRegression, annotateOutlier } from '../annotations/g2/index'
 import { generalLinearRegression } from "../lib/regression";
 // const annotationList = [annotateCluster, annotateOutlier, annotateGeneralRegression] as const;
 const MAX_TEST_ORDER = 3;

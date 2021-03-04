@@ -1,6 +1,6 @@
 import { View } from '@antv/g2';
 import { Clusters } from '@kanaries/ml';
-import { dropNull, getViewPosition, getViewRawData, json2matrix } from '../utils';
+import { dropNull, getViewPosition, getViewRawData, json2matrix } from '../../utils';
 const CLUSTER_KEY = 'cluster_group_';
 export function annotateCluster(view: View) {
     const kmeans = new Clusters.KMeans(3, 0.05);

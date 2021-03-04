@@ -12,10 +12,13 @@
   },
   "dependencies": {
     "@antv/g2": "^4.1.12",
+    "auto-annotations": "^0.1.0",
     "moment": "^2.29.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "auto-annotations": "^0.1.0"
+    "vega": "^5.19.1",
+    "vega-embed": "^6.15.2",
+    "vega-lite": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

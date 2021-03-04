@@ -1,5 +1,5 @@
 import { View } from '@antv/g2';
-import { IRow } from '../interfaces';
+import { IRow } from '../../interfaces';
 import {
     dropNull,
     getViewPosition,
@@ -8,8 +8,8 @@ import {
     json2matrix,
     normalize2quantitative,
     vec_dot
-} from '../utils';
-import { generalLinearRegression } from '../lib/regression';
+} from '../../utils';
+import { generalLinearRegression } from '../../lib/regression';
 
 // TODO: data, spec冗余，可以从view里获得
 export function annotateGeneralRegression(
