@@ -14,14 +14,15 @@ import { generalLinearRegression } from '../../lib/regression';
 // TODO: data, spec冗余，可以从view里获得
 export function annotateGeneralRegression(
     view: View,
-    order: number = 1
+    order: number = 1,
+    timeFormatter: string = 'YYYY-MM-DD'
 ) {
     const rawData = getViewRawData(view);
     const position = getViewPosition(view);
     const cleanData = dropNull(rawData, position);
     let normalizedData: IRow[];
     if (!isNumField(cleanData, position[0])) {
-        normalizedData = normalize2quantitative(cleanData, position[0]);
+        normalizedData = normalize2quantitative(cleanData, position[0], timeFormatter);
     } else {
         normalizedData = [...cleanData];
     }

@@ -72,14 +72,15 @@ export function rescale(dataSource: IRow[], fields: string[]) {
 
 export function normalize2quantitative(
     dataSource: IRow[],
-    xField: string
+    xField: string,
+    timeFormatter: string = 'YYYY-MM-DD'
 ): IRow[] {
     let normalizedData: IRow[] = [];
     if (isTimeField(dataSource, xField)) {
         console.log('is time');
         normalizedData = dataSource.map((r) => ({
             ...r,
-            [xField]: moment(r[xField], 'YYYYMMDD').unix(),
+            [xField]: moment(r[xField], timeFormatter).unix(),
         }));
     } else {
         normalizedData = dataSource.map((r, index) => ({
